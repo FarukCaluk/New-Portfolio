@@ -380,8 +380,8 @@ span{
     transition: 0.4s ease-in-out;
 }
 .service-box:hover{
-    background: #C5C6C7;;
-    color: black;
+    background: #2C3531;
+    color: white;
     border: 5px solid var(--main-color);
     transform:  scale(1.03);
 }
