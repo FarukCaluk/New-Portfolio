@@ -4,8 +4,8 @@ let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
 
 menuIcon.onclick = () => {
-    menuIcon.classList.toggle('bx-x');  // Menja izgled ikone
-    navbar.classList.toggle('active');  // Otvara/zatvara navbar
+    menuIcon.classList.toggle('bx-x');  
+    navbar.classList.toggle('active');  
 };
 
 window.onscroll = () => {
@@ -23,7 +23,74 @@ window.onscroll = () => {
         }
     });
 
-    // ❗ Automatski zatvori meni kada korisnik skroluje
     menuIcon.classList.remove('bx-x');
     navbar.classList.remove('active');
 };
+window.addEventListener('scroll', function() {
+    const dots = document.querySelectorAll('.timeline-dot');
+    const scrollY = window.scrollY;
+    dots.forEach((dot, i) => {
+        // Pomjeri svaku tačku malo drugačije za efekat talasa
+        const offset = Math.sin((scrollY / 100) + i) * 10; // 10px gore-dolje
+        dot.style.transform = `translateY(${offset}px)`;
+    });
+});
+
+window.addEventListener('scroll', function() {
+    const timeline = document.querySelector('.timeline-items');
+    const dot = document.getElementById('moving-dot');
+    if (!timeline || !dot) return;
+
+    const rect = timeline.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Izračunaj koliko je timeline vidljiv na ekranu
+    let percent = 0;
+    if (rect.top < windowHeight && rect.bottom > 0) {
+        percent = Math.min(1, Math.max(0, (windowHeight - rect.top) / (rect.height + windowHeight)));
+    }
+
+    // Postavi dot od vrha do dna timeline-a
+    const minY = 0;
+    const maxY = rect.height - 21; // 21 je visina tačke
+    const y = minY + percent * maxY;
+
+    dot.style.top = y + "px";
+});
+window.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('matrix-bg');
+    const ctx = canvas.getContext('2d');
+
+    // Resize canvas
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Matrix chars
+    const chars = ['0', '1'];
+    const fontSize = 22;
+    const columns = () => Math.floor(canvas.width / fontSize);
+    let drops = Array(columns()).fill(1);
+
+    function draw() {
+        ctx.fillStyle = "rgba(10,15,26,0.15)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = fontSize + "px 'Orbitron', monospace";
+        ctx.fillStyle = "#00fff7";
+        for (let i = 0; i < drops.length; i++) {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+
+    setInterval(draw, 50);
+});

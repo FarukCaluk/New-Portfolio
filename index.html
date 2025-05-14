@@ -6,8 +6,11 @@
     <title>Responsive portfolio Website</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:700&display=swap" rel="stylesheet">
 </head>
 <body>
+      <canvas id="matrix-bg"></canvas>
     <header class="header">
         <a href="#home" class="logo">Faruk <span>Čaluk</span ></a>
         <i class='bx bx-menu' id="menu-icon"></i>
@@ -22,7 +25,7 @@
     </header>
     <section class="home" id ="home">
         <div class="home-content">
-            <h1>Hi, it's <span>Faruk</span></h1>
+            <h1 class="glitch-heading">Hi, it's <span>Faruk</span></h1>
             <h3 class="text-animation">I'm a <span></span></h3>
             <p>
                 I am a Software Engineering student at the Faculty of Information Technologies in Mostar. I practice taekwondo, kickboxing, and MMA. Balancing studies and sports teaches me discipline, resilience, and focus. I am passionate about programming, AI, and continuous self-improvement.</p>
@@ -44,36 +47,32 @@
     <section class="education" id ="education">
         <h2 class="heading">Education</h2>
         <div class="timeline-items">
+            <div class="timeline-dot" id="moving-dot"></div>
             <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                      <div class="timeline-date">2021</div>
-                      <div class="timeline-content">
-                        <h3>High school</h3>
-                        <p>I graduated from Gymnasium in Kakanj, where I developed a strong foundation in various subjects. My time there helped me grow academically and personally, preparing me for future challenges and opportunities.</p>
-                      </div>               
+                <div class="timeline-date">2021</div>
+                <div class="timeline-content">
+                    <h3>High school</h3>
+                    <p>I graduated from Gymnasium in Kakanj, where I developed a strong foundation in various subjects. My time there helped me grow academically and personally, preparing me for future challenges and opportunities.</p>
+                </div>               
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                      <div class="timeline-date">2022</div>
-                      <div class="timeline-content">
-                        <h3>University</h3>
-                        <p>I am studying at the Faculty of Information Technologies in Mostar, focusing on software engineering. This university experience is enhancing my technical skills and preparing me for a career in the IT industry.</p>
-                      </div>
+                <div class="timeline-date">2022</div>
+                <div class="timeline-content">
+                    <h3>University</h3>
+                    <p>I am studying at the Faculty of Information Technologies in Mostar, focusing on software engineering. This university experience is enhancing my technical skills and preparing me for a career in the IT industry.</p>
+                </div>
                 
             </div>
             <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                      <div class="timeline-date">2025</div>
-                      <div class="timeline-content">
-                        <h3>On a road to get finis uni</h3>
-                        <p>I am currently in the final stages of my studies at the Faculty of Information Technologies in Mostar. As I near graduation, I am eager to gain practical experience through an internship.</p>
-                      </div>
+                <div class="timeline-date">2025</div>
+                <div class="timeline-content">
+                    <h3>On a road to get finis uni</h3>
+                    <p>I am currently in the final stages of my studies at the Faculty of Information Technologies in Mostar. As I near graduation, I am eager to gain practical experience through an internship.</p>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                      <div class="timeline-date">Loading...</div>
-
+                <div class="timeline-date">Loading...</div>
             </div>
         </div>
     </section>
