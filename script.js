@@ -94,3 +94,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     setInterval(draw, 50);
 });
+
+ document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        emailjs.sendForm("service_ze0p0br", "template_oma0xz8", this)
+            .then(function() {
+                alert("Poruka je poslana! ✅");
+            }, function(error) {
+                alert("Greška sa slanjem poruke ❌: " + JSON.stringify(error));
+            });
+    });
