@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+JP:wght@300;400;700&display=swap');
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS — Dojo Gold
+───────────────────────────────────────────── */
+:root {
+  /* Backgrounds — warm near-black */
+  --bg:           #09080a;
+  --surface:      #0f0e10;
+  --surface-2:    #161518;
+  --surface-3:    #1e1c21;
+  --surface-4:    #272530;
+
+  /* Borders */
+  --border:       #2a2830;
+  --border-soft:  #1a1820;
+
+  /* Text */
+  --text:         #ede8df;
+  --text-2:       #8a8490;
+  --text-3:       #4a4650;
+
+  /* Gold accent system */
+  --gold:         #c9a96e;
+  --gold-dark:    #8a6c30;
+  --gold-light:   #e8c98a;
+  --gold-bright:  #f0d080;
+  --gold-soft:    rgba(201,169,110,0.08);
+  --gold-mid:     rgba(201,169,110,0.16);
+  --gold-rim:     rgba(201,169,110,0.22);
+
+  /* Functional */
+  --success: #4ade80;
+  --error:   #f87171;
+
+  --radius:  6px;
+  --radius-lg: 12px;
+}
+
+@theme inline {
+  --color-bg:      var(--bg);
+  --color-surface: var(--surface);
+  --color-gold:    var(--gold);
+  --color-text:    var(--text);
+}
+
+/* ─────────────────────────────────────────────
+   RESET
+───────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { overflow-x: hidden; scroll-behavior: auto; /* Lenis handles this */ }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::selection { background: rgba(201,169,110,0.2); color: var(--text); }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY
+───────────────────────────────────────────── */
+.font-serif { font-family: 'Noto Serif JP', serif; }
+.font-mono  { font-family: 'JetBrains Mono', monospace; }
+
+.label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  color: var(--text);
+}
+
+.kanji-bg {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(6rem, 18vw, 14rem);
+  font-weight: 700;
+  color: rgba(201,169,110,0.04);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ─────────────────────────────────────────────
+   BUTTONS — vertical gold gradient (modern tactile)
+───────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  border: none;
+  outline: none;
+  letter-spacing: 0.01em;
+}
+
+.btn-gold {
+  background: linear-gradient(180deg, #d4b070 0%, #8a6c30 100%);
+  color: #0a0800;
+  padding: 0.7rem 1.6rem;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.14) inset,
+    0 -1px 0 rgba(0,0,0,0.3) inset,
+    0 4px 14px rgba(138,108,48,0.35);
+}
+.btn-gold:hover {
+  background: linear-gradient(180deg, #e0c078 0%, #9a7840 100%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.18) inset,
+    0 -1px 0 rgba(0,0,0,0.3) inset,
+    0 6px 22px rgba(138,108,48,0.5);
+  transform: translateY(-1px);
+}
+.btn-gold:active { transform: translateY(0); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-2);
+  padding: 0.7rem 1.6rem;
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-sm { padding: 0.5rem 1.1rem; font-size: 0.78rem; }
+
+.btn-icon {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.btn-icon:hover {
+  background: var(--surface-3);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+/* ─────────────────────────────────────────────
+   CARDS
+───────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+}
+
+/* Glassmorphism card */
+.card-glass {
+  background: rgba(15, 14, 18, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(201,169,110,0.12);
+  border-radius: var(--radius-lg);
+}
+.card-glass:hover {
+  border-color: rgba(201,169,110,0.28);
+  background: rgba(22, 20, 28, 0.75);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,169,110,0.1) inset;
+}
+
+.card-hover {
+  transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s, background 0.22s;
+}
+.card-hover:hover {
+  border-color: var(--border);
+  box-shadow: 0 10px 48px rgba(0,0,0,0.55);
+  transform: translateY(-3px);
+}
+
+/* ─────────────────────────────────────────────
+   BADGE
+───────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 0.22rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+.badge-gold {
+  background: var(--gold-soft);
+  border-color: var(--gold-rim);
+  color: var(--gold);
+}
+
+/* ─────────────────────────────────────────────
+   INPUTS
+───────────────────────────────────────────── */
+.input {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  resize: none;
+}
+.input::placeholder { color: var(--text-3); }
+.input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+/* ─────────────────────────────────────────────
+   DIVIDERS
+───────────────────────────────────────────── */
+.divider { height: 1px; background: var(--border-soft); border: none; }
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+  border: none;
+}
+
+/* ─────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────── */
+.nav-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: color 0.18s;
+  position: relative;
+  letter-spacing: 0.01em;
+}
+.nav-link:hover { color: var(--text); }
+.nav-link.active { color: var(--gold-light); }
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 100%; height: 1px;
+  background: var(--gold);
+  border-radius: 1px;
+}
+
+/* ─────────────────────────────────────────────
+   SKILL BAR
+───────────────────────────────────────────── */
+.skill-track { height: 2px; background: var(--surface-3); border-radius: 2px; overflow: hidden; }
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ─────────────────────────────────────────────
+   SECTION BASE
+───────────────────────────────────────────── */
+.section { padding: 8rem 1.5rem; position: relative; z-index: 2; overflow: hidden; }
+
+/* ─────────────────────────────────────────────
+   JAPANESE BRUSHSTROKE DIVIDER
+───────────────────────────────────────────── */
+.brush-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.brush-divider::before,
+.brush-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border));
+}
+.brush-divider::after {
+  background: linear-gradient(90deg, var(--border), transparent);
+}
+
+/* ─────────────────────────────────────────────
+   KAIZEN QUOTE
+───────────────────────────────────────────── */
+.kaizen-quote {
+  border-left: 2px solid var(--gold-dark);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--text-2);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+/* ─────────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────────── */
+@keyframes fade-up  { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+@keyframes fade-in  { from{opacity:0} to{opacity:1} }
+@keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes pulse-dot{ 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.5)} }
+@keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes spin     { to{transform:rotate(360deg)} }
+@keyframes shimmer  {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.cursor-blink { animation: blink 1s step-end infinite; }
+.pulse-dot    { animation: pulse-dot 2.2s ease infinite; }
+.float-anim   { animation: float 5s ease-in-out infinite; }
+
+/* ─────────────────────────────────────────────
+   SCROLL CUE
+───────────────────────────────────────────── */
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--gold-dark), transparent);
+  animation: fade-in 1s ease 1.5s both;
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE NAV DRAWER
+───────────────────────────────────────────── */
+.mobile-drawer {
+  background: rgba(9,8,10,0.96);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .section { padding: 5.5rem 1.25rem; }
+}
+@media (max-width: 480px) {
+  .section { padding: 4.5rem 1rem; }
+}
