@@ -57,7 +57,7 @@ const PROJECTS = [
     desc: "A productivity and self-improvement application built on the Kaizen philosophy — tracking continuous, incremental progress. Personal concept turned into a shipping product.",
     tags: ["JavaScript", "Productivity"],
     github: "https://github.com/FarukCaluk/kaizen-way",
-    live: null,
+    live: "https://kaizen-way.vercel.app",
     featured: false,
   },
 ];
