@@ -35,7 +35,7 @@ const PROJECTS = [
     desc: "Web application for the Bosna Rudar Taekwondo collective. News, team profiles, fixtures and results. Built with Next.js and TypeScript — live in production.",
     tags: ["Next.js", "TypeScript", "Tailwind"],
     github: "https://github.com/FarukCaluk/kolektiv-bosna-rudar-website",
-    live: "https://bosnarudar.netlify.app",
+    live: "https://kolektiv-bosna-rudar.vercel.app",
     featured: false,
   },
   {
