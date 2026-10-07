@@ -3,13 +3,15 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const NAV = [
-  { label: "Education",    href: "#education" },
-  { label: "Sports",       href: "#sports" },
-  { label: "Services",     href: "#services" },
   { label: "Projects",     href: "#projects" },
+  { label: "Experience",   href: "#education" },
   { label: "Testimonials", href: "#testimonials" },
+  { label: "Skills",       href: "#services" },
+  { label: "Sports",       href: "#sports" },
   { label: "Contact",      href: "#contact" },
 ];
+
+const SECTIONS = ["home", "projects", "education", "testimonials", "services", "sports", "contact"];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,17 +19,21 @@ export default function Header() {
   const [active,   setActive]   = useState("");
 
   useEffect(() => {
-    const onScroll = () => {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
       setScrolled(window.scrollY > 40);
-      const sections = ["home", "education", "sports", "services", "projects", "testimonials", "contact"];
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && window.scrollY >= el.offsetTop - 100) {
-          setActive(`#${sections[i]}`);
-          break;
-        }
+      let cur = "";
+      for (const id of SECTIONS) {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 100) cur = `#${id}`;
       }
+      setActive(cur);
     };
+    const onScroll = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -43,11 +49,8 @@ export default function Header() {
       <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 1.5rem", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
         {/* Logo */}
-        <a href="#home" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <span style={{ width: 28, height: 28, borderRadius: 6, background: "linear-gradient(180deg,#fb923c,#ea580c)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: "0.75rem", color: "#fff" }}>FC</span>
-          </span>
-          <span style={{ fontWeight: 700, fontSize: "0.95rem", color: "#f0f0f0", letterSpacing: "-0.01em" }}>Faruk Čaluk</span>
+        <a href="#home" style={{ textDecoration: "none" }}>
+          <span style={{ fontWeight: 700, fontSize: "1rem", color: "#f0f0f0", letterSpacing: "-0.01em" }}>Faruk Čaluk</span>
         </a>
 
         {/* Desktop nav */}

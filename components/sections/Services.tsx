@@ -92,7 +92,7 @@ function ServiceCard({ s, i }: { s: typeof SERVICES[0]; i: number }) {
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.5rem" }}>
-        <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.62rem", color: "var(--text-3)" }}>{s.num}</span>
+        <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.62rem", color: "var(--text-3)" }}>{s.num}</span>
         <div style={{
           width: 38, height: 38, borderRadius: 8,
           background: hov ? "var(--gold-soft)" : "var(--surface-3)",
@@ -127,7 +127,7 @@ function SkillBar({ label, pct, i }: { label: string; pct: number; i: number }) 
     <div ref={ref}>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.45rem" }}>
         <span style={{ fontSize: "0.84rem", color: "var(--text-2)", fontWeight: 500 }}>{label}</span>
-        <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.68rem", color: "var(--gold)" }}>{pct}%</span>
+        <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.68rem", color: "var(--gold)" }}>{pct}%</span>
       </div>
       <div className="skill-track">
         <div className="skill-fill" style={{ width: `${w}%` }} />
@@ -143,7 +143,7 @@ export default function Services() {
 
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "2.5rem", gap: "1rem", flexWrap: "wrap" }}>
           <div>
-            <p className="label" style={{ marginBottom: "0.75rem" }}>03 — 技 (Waza)</p>
+            <p className="label" style={{ marginBottom: "0.75rem" }}>04 — 技 (Waza)</p>
             <h2 className="section-title">Services</h2>
           </div>
           <div className="kanji-bg" style={{ fontSize: "clamp(4rem,10vw,8rem)", opacity: 0.05 }}>技</div>
@@ -194,7 +194,7 @@ export default function Services() {
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
                 >
                   <div style={{ width: 7, height: 7, borderRadius: "50%", background: col, flexShrink: 0 }} />
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.62rem", color: "var(--text-2)" }}>{label}</span>
+                  <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.62rem", color: "var(--text-2)" }}>{label}</span>
                 </div>
               ))}
             </div>
@@ -210,7 +210,7 @@ export default function Services() {
                 { kanji: "鍛", title: "Athlete's grit",   body: "Consistent practice beats raw talent. Show up and do the reps." },
               ].map(({ kanji, title, body }) => (
                 <div key={title} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
-                  <span style={{ fontFamily: "'Noto Serif JP',serif", fontSize: "1.05rem", color: "var(--gold-dark)", flexShrink: 0, width: 26, textAlign: "center", lineHeight: 1.4 }}>{kanji}</span>
+                  <span style={{ fontFamily: "var(--font-jp), serif", fontSize: "1.05rem", color: "var(--gold-dark)", flexShrink: 0, width: 26, textAlign: "center", lineHeight: 1.4 }}>{kanji}</span>
                   <div>
                     <p style={{ fontWeight: 600, fontSize: "0.84rem", color: "var(--text-2)", marginBottom: "0.12rem" }}>{title}</p>
                     <p style={{ fontSize: "0.77rem", color: "var(--text-3)", lineHeight: 1.68 }}>{body}</p>

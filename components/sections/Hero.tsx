@@ -10,7 +10,6 @@ import {
 } from "react-icons/fa";
 import dynamic from "next/dynamic";
 import {
-  Enso,
   ToriiGate,
   CherryBlossom,
   RedSun,
@@ -43,17 +42,13 @@ const SOCIALS = [
   { icon: FaEnvelope, href: "mailto:farukcaluk12@gmail.com", label: "Email" },
 ];
 
-export default function Hero() {
+/* Own component so each keystroke re-renders only this span, not the whole hero. */
+function TypedRole() {
   const [role, setRole] = useState("");
   const [rIdx, setRIdx] = useState(0);
   const [typing, setTyping] = useState(true);
   const [charIdx, setCharIdx] = useState(0);
-  const [vis, setVis] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-
-  useEffect(() => {
-    setTimeout(() => setVis(true), 100);
-  }, []);
 
   useEffect(() => {
     clearTimeout(timer.current);
@@ -74,12 +69,33 @@ export default function Hero() {
           setCharIdx((c) => c - 1);
         }, 36);
       } else {
-        setTyping(true);
-        setRIdx((i) => (i + 1) % ROLES.length);
+        timer.current = setTimeout(() => {
+          setTyping(true);
+          setRIdx((i) => (i + 1) % ROLES.length);
+        }, 0);
       }
     }
     return () => clearTimeout(timer.current);
   }, [charIdx, typing, rIdx]);
+
+  return (
+    <>
+      <span style={{ color: "var(--gold)", fontFamily: "var(--font-mono), monospace", fontSize: "0.9rem", opacity: 0.7 }}>›</span>
+      <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: "clamp(0.85rem,1.8vw,1rem)", color: "var(--text-2)", fontWeight: 400 }}>
+        {role}
+      </span>
+      <span className="cursor-blink" style={{ color: "var(--gold)", fontSize: "1rem", lineHeight: 1 }}>_</span>
+    </>
+  );
+}
+
+export default function Hero() {
+  const [vis, setVis] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setVis(true), 100);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <section
@@ -135,7 +151,7 @@ export default function Hero() {
           transform: "translateY(-50%)",
           zIndex: 1,
           pointerEvents: "none",
-          fontFamily: "'Noto Serif JP', serif",
+          fontFamily: "var(--font-jp), serif",
           fontSize: "clamp(8rem, 20vw, 18rem)",
           fontWeight: 700,
           color: "rgba(201,169,110,0.03)",
@@ -238,13 +254,13 @@ export default function Hero() {
             </span>
             <span
               style={{
-                fontFamily: "'JetBrains Mono',monospace",
+                fontFamily: "var(--font-mono), monospace",
                 fontSize: "0.6rem",
                 color: "var(--text-3)",
                 letterSpacing: "0.12em",
               }}
             >
-              BSc · Software Engineering · FIT Mostar
+              Final-year · Software Engineering · FIT Mostar
             </span>
           </div>
 
@@ -272,32 +288,7 @@ export default function Hero() {
               minHeight: "1.8rem",
             }}
           >
-            <span
-              style={{
-                color: "var(--gold)",
-                fontFamily: "'JetBrains Mono',monospace",
-                fontSize: "0.9rem",
-                opacity: 0.7,
-              }}
-            >
-              ›
-            </span>
-            <span
-              style={{
-                fontFamily: "'JetBrains Mono',monospace",
-                fontSize: "clamp(0.85rem,1.8vw,1rem)",
-                color: "var(--text-2)",
-                fontWeight: 400,
-              }}
-            >
-              {role}
-            </span>
-            <span
-              className="cursor-blink"
-              style={{ color: "var(--gold)", fontSize: "1rem", lineHeight: 1 }}
-            >
-              _
-            </span>
+            <TypedRole />
           </div>
 
           {/* Bio */}
@@ -314,6 +305,14 @@ export default function Hero() {
             Kickboxing & MMA. The discipline from the mat directly shapes how I
             write code.
           </p>
+
+          <a
+            href="#projects"
+            className="badge"
+            style={{ textDecoration: "none", marginBottom: "1.25rem", color: "var(--text-2)" }}
+          >
+            <span style={{ color: "var(--gold)" }}>Now</span> Redesigning mega-em.com — my first client project ↓
+          </a>
 
           <p
             className="kaizen-quote"
@@ -337,14 +336,14 @@ export default function Hero() {
             }}
           >
             {[
-              { n: "4+", l: "Yrs coding" },
-              { n: "10+", l: "Projects" },
+              { n: "2", l: "Internships" },
+              { n: "5", l: "Live projects" },
               { n: "15+", l: "Yrs martial arts" },
             ].map(({ n, l }) => (
               <div key={l}>
                 <div
                   style={{
-                    fontFamily: "'JetBrains Mono',monospace",
+                    fontFamily: "var(--font-mono), monospace",
                     fontSize: "clamp(1.4rem,3vw,2rem)",
                     fontWeight: 700,
                     color: "var(--gold)",
@@ -483,12 +482,11 @@ export default function Hero() {
               style={{
                 position: "absolute",
                 ...s,
-                background: "rgba(15,14,18,0.88)",
-                backdropFilter: "blur(12px)",
+                background: "rgba(15,14,18,0.92)",
                 border: "1px solid var(--border)",
                 borderRadius: 8,
                 padding: "0.3rem 0.65rem",
-                fontFamily: "'JetBrains Mono',monospace",
+                fontFamily: "var(--font-mono), monospace",
                 fontSize: "0.62rem",
                 color: "var(--text-2)",
                 whiteSpace: "nowrap",

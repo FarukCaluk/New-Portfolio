@@ -28,6 +28,13 @@ const T = [
   },
 ];
 
+const FEATURED = {
+  quote: "Faruk joined eSIMFly as an intern and quickly became a reliable part of our team. He built core parts of our NestJS backend and React admin dashboard, took real ownership of his work and was always eager to learn. We would gladly recommend him to any engineering team.",
+  names: "Tarik Kaledžija & Kenan Berbić",
+  role: "Co-founders, eSIMFly",
+  initials: ["TK", "KB"],
+};
+
 function Stars({ n }: { n: number }) {
   return (
     <div style={{ display: "flex", gap: "0.15rem" }}>
@@ -77,13 +84,55 @@ export default function Testimonials() {
 
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "2.5rem", gap: "1rem", flexWrap: "wrap" }}>
           <div>
-            <p className="label" style={{ marginBottom: "0.75rem" }}>05 — 声 (Koe · Voice)</p>
+            <p className="label" style={{ marginBottom: "0.75rem" }}>03 — 声 (Koe · Voice)</p>
             <h2 className="section-title">Testimonials</h2>
           </div>
           <div className="kanji-bg" style={{ fontSize: "clamp(4rem,10vw,8rem)", opacity: 0.04 }}>信</div>
         </div>
 
         <KatanaDivider opacity={0.15} />
+
+        {/* Featured: employer recommendation */}
+        <figure
+          className="card"
+          style={{
+            marginTop: "2.5rem",
+            padding: "clamp(1.5rem,4vw,2.5rem)",
+            borderColor: "rgba(201,169,110,0.22)",
+            borderLeft: "2px solid var(--gold-dark)",
+            opacity: vis ? 1 : 0,
+            transition: "opacity 0.6s ease",
+          }}
+        >
+          <span className="badge badge-gold" style={{ marginBottom: "1.25rem" }}>Employer recommendation</span>
+          <blockquote style={{ fontSize: "clamp(1.05rem,2.2vw,1.35rem)", lineHeight: 1.65, color: "var(--text)", fontWeight: 500, letterSpacing: "-0.01em", maxWidth: 840 }}>
+            &ldquo;{FEATURED.quote}&rdquo;
+          </blockquote>
+          <figcaption style={{ display: "flex", alignItems: "center", gap: "0.9rem", marginTop: "1.75rem", flexWrap: "wrap" }}>
+            <div style={{ display: "flex" }}>
+              {FEATURED.initials.map((ini, n) => (
+                <span
+                  key={ini}
+                  style={{
+                    width: 40, height: 40, borderRadius: "50%", marginLeft: n ? -10 : 0,
+                    background: "var(--surface-3)", border: "1.5px solid var(--gold-dark)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontFamily: "var(--font-mono), monospace", fontSize: "0.68rem", color: "var(--gold)",
+                  }}
+                >
+                  {ini}
+                </span>
+              ))}
+            </div>
+            <div>
+              <p style={{ fontWeight: 600, fontSize: "0.92rem", color: "var(--text)" }}>{FEATURED.names}</p>
+              <p style={{ fontSize: "0.76rem", color: "var(--text-3)" }}>{FEATURED.role}</p>
+            </div>
+            <a href="https://esimfly.app" target="_blank" rel="noopener noreferrer" className="badge" style={{ marginLeft: "auto", textDecoration: "none" }}>
+              esimfly.app ↗
+            </a>
+          </figcaption>
+        </figure>
 
         {/* Desktop: 3-column */}
         <div
@@ -92,7 +141,7 @@ export default function Testimonials() {
             display: "grid",
             gridTemplateColumns: "repeat(3,1fr)",
             gap: "1rem",
-            marginTop: "2.5rem",
+            marginTop: "1rem",
             opacity: vis ? 1 : 0,
             transition: "opacity 0.6s ease",
           }}
@@ -140,7 +189,7 @@ export default function Testimonials() {
         </div>
 
         {/* Mobile: carousel */}
-        <div className="testi-mobile" style={{ display: "none", marginTop: "2rem" }}>
+        <div className="testi-mobile" style={{ display: "none", marginTop: "1rem" }}>
           <div style={{
             background: "var(--surface)",
             border: "1px solid rgba(201,169,110,0.2)",

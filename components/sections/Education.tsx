@@ -44,21 +44,33 @@ const ITEMS = [
     type: "work",
     title: "Full-Stack Development Intern",
     place: "eSIMFly · Oct 2025 – Dec 2025 · 3 mos · Hybrid",
-    body: "First professional internship — worked on production features for the eSIM management platform. Gained real-world experience with NestJS, MongoDB, and React in a live product used by real customers. Also shipped the Bosna Rudar web app.",
+    body: "First professional internship, worked directly under co-founders Tarik Kaledžija and Kenan Berbić. Built a NestJS + MongoDB REST API (JWT, role-based access control, i18n, Swagger docs) and a React/TypeScript admin dashboard for a live eSIM platform used by real customers.",
     tags: ["React", "NestJS", "MongoDB", "TypeScript"],
-    link: "https://bosnarudar.netlify.app",
-    linkLabel: "bosnarudar.netlify.app ↗",
+    link: "https://esimfly.app",
+    linkLabel: "esimfly.app ↗",
   },
   {
-    year: "2026 →",
+    year: "2026",
     kanji: "道",
     kanjiLabel: "Michi · The Way",
     type: "work",
     title: "Full-Stack Development Intern",
-    place: "Bloomteq · Apr 2026 · Sarajevo, Bosnia · Hybrid",
-    body: "Currently interning at Bloomteq, working on full-stack development with modern web technologies. Expanding into PHP/Laravel and Angular — proof that the Kaizen mindset means picking up new tools without hesitation.",
-    tags: ["PHP", "Laravel", "Angular", "Full-Stack"],
+    place: "Bloomteq · May 2026 – Aug 2026 · 4 mos · Sarajevo, Bosnia · Hybrid",
+    body: "Completed a four-month full-stack internship. Built backend services in PHP/Laravel (secure REST APIs, database migrations) and responsive Angular + TypeScript interfaces, working in an agile team with Git workflows and code review.",
+    tags: ["PHP", "Laravel", "Angular", "TypeScript"],
     link: null,
+  },
+  {
+    year: "Now",
+    kanji: "進",
+    kanjiLabel: "Susumu · Advance",
+    type: "now",
+    title: "Final Year · Open to Work",
+    place: "FIT Mostar · BSc Software Engineering · Final year",
+    body: "Finishing my degree while looking for a full-stack role. I've landed my first client — a full redesign of Mega-Em's website — and completed Anthropic's Claude Code, MCP, Anthropic API and Agent Skills courses. Looking for a team where I can keep shipping and keep improving.",
+    tags: ["Open to work", "React", "Next.js", "NestJS", "Laravel", "Claude Code"],
+    link: "#contact",
+    linkLabel: "Get in touch ↗",
     current: true,
   },
 ];
@@ -67,12 +79,14 @@ const TYPE_COLOR: Record<string, string> = {
   education: "var(--text-3)",
   project:   "var(--gold-dark)",
   work:      "var(--gold)",
+  now:       "var(--gold-light)",
 };
 
 const TYPE_LABEL: Record<string, string> = {
   education: "Education",
   project:   "Project",
   work:      "Internship",
+  now:       "Currently",
 };
 
 function TimelineItem({ item, index }: { item: typeof ITEMS[0]; index: number }) {
@@ -104,7 +118,7 @@ function TimelineItem({ item, index }: { item: typeof ITEMS[0]; index: number })
       {/* Year + kanji */}
       <div style={{ textAlign: "right", paddingTop: "0.25rem", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.5rem" }}>
         <span style={{
-          fontFamily: "'JetBrains Mono',monospace",
+          fontFamily: "var(--font-mono), monospace",
           fontSize: "0.68rem", fontWeight: 700,
           color: isLast ? "var(--gold)" : "var(--text-3)",
           letterSpacing: "0.04em",
@@ -143,7 +157,7 @@ function TimelineItem({ item, index }: { item: typeof ITEMS[0]; index: number })
               <Briefcase size={10} color={TYPE_COLOR[item.type]} strokeWidth={1.5} />
             </div>
           )}
-          <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.58rem", color: TYPE_COLOR[item.type], letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.58rem", color: TYPE_COLOR[item.type], letterSpacing: "0.1em", textTransform: "uppercase" }}>
             {TYPE_LABEL[item.type]}
           </span>
           {"current" in item && item.current && (
@@ -175,11 +189,10 @@ function TimelineItem({ item, index }: { item: typeof ITEMS[0]; index: number })
         {item.link && (
           <a
             href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(item.link.startsWith("#") ? {} : { target: "_blank", rel: "noopener noreferrer" })}
             style={{
               display: "inline-flex", alignItems: "center", gap: "0.35rem",
-              fontFamily: "'JetBrains Mono',monospace", fontSize: "0.62rem",
+              fontFamily: "var(--font-mono), monospace", fontSize: "0.62rem",
               color: "var(--gold)", textDecoration: "none", letterSpacing: "0.06em",
               opacity: 0.8, transition: "opacity 0.2s",
             }}
@@ -211,7 +224,7 @@ export default function Education() {
       <div style={{ maxWidth: 1140, margin: "0 auto", position: "relative", zIndex: 2 }}>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "2.5rem", gap: "1rem", flexWrap: "wrap" }}>
           <div>
-            <p className="label" style={{ marginBottom: "0.75rem" }}>01 — 教育 (Kyōiku)</p>
+            <p className="label" style={{ marginBottom: "0.75rem" }}>02 — 教育 (Kyōiku)</p>
             <h2 className="section-title">Education & Experience</h2>
           </div>
           <div className="kanji-bg" style={{ fontSize: "clamp(4rem,10vw,8rem)", opacity: 0.04 }}>学</div>

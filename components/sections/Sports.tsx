@@ -58,7 +58,7 @@ export default function Sports() {
         {/* Header */}
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "2.5rem", gap: "1rem", flexWrap: "wrap" }}>
           <div>
-            <p className="label" style={{ marginBottom: "0.75rem" }}>02 — 武道 (Budō)</p>
+            <p className="label" style={{ marginBottom: "0.75rem" }}>05 — 武道 (Budō)</p>
             <h2 className="section-title">Sports</h2>
           </div>
           <div className="kanji-bg" style={{ fontSize: "clamp(4rem,10vw,8rem)", opacity: 0.05 }}>武</div>
@@ -92,7 +92,7 @@ export default function Sports() {
               <KanjiDecor char={kanji} label={kanjiLabel} />
               <div>
                 <p style={{ fontWeight: 600, fontSize: "0.83rem", color: "var(--text)", lineHeight: 1.2 }}>{label}</p>
-                <p style={{ fontSize: "0.68rem", color: "var(--gold)", fontFamily: "'JetBrains Mono',monospace", letterSpacing: "0.08em", marginTop: "0.15rem" }}>{sub}</p>
+                <p style={{ fontSize: "0.68rem", color: "var(--gold)", fontFamily: "var(--font-mono), monospace", letterSpacing: "0.08em", marginTop: "0.15rem" }}>{sub}</p>
               </div>
             </div>
           ))}
@@ -137,7 +137,7 @@ export default function Sports() {
                 }}
               >
                 <span style={{
-                  fontFamily: "'JetBrains Mono',monospace",
+                  fontFamily: "var(--font-mono), monospace",
                   fontSize: "0.58rem", color: "var(--text-2)",
                   letterSpacing: "0.1em", textTransform: "uppercase",
                 }}>

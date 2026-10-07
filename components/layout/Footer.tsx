@@ -36,7 +36,7 @@ export default function Footer() {
       {/* Kanji watermark background */}
       <div style={{
         position: "absolute", bottom: "-1rem", right: "2rem",
-        fontFamily: "'Noto Serif JP',serif",
+        fontFamily: "var(--font-jp), serif",
         fontSize: "9rem", fontWeight: 700,
         color: "rgba(201,169,110,0.03)",
         lineHeight: 1, userSelect: "none", pointerEvents: "none",
@@ -62,7 +62,7 @@ export default function Footer() {
               Building software with the same discipline<br />brought to the mat.
             </p>
             <p style={{
-              fontFamily: "'Noto Serif JP',serif",
+              fontFamily: "var(--font-jp), serif",
               fontSize: "0.9rem", color: "var(--gold-dark)",
               marginTop: "0.75rem",
             }}>

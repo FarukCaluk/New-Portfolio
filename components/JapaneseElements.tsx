@@ -55,8 +55,8 @@ export function CherryBlossom({
           {[0, 72, 144, 216, 288].map((angle, j) => (
             <ellipse
               key={j}
-              cx={Math.cos((angle * Math.PI) / 180) * 6}
-              cy={Math.sin((angle * Math.PI) / 180) * 6}
+              cx={+(Math.cos((angle * Math.PI) / 180) * 6).toFixed(2)}
+              cy={+(Math.sin((angle * Math.PI) / 180) * 6).toFixed(2)}
               rx="4.5" ry="2.5"
               transform={`rotate(${angle})`}
               fill="#c9a96e"
@@ -344,11 +344,11 @@ export function KanjiDecor({ char, label, opacity = 0.9 }: { char: string; label
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.15rem", opacity }}>
       <span style={{
-        fontFamily: "'Noto Serif JP', serif",
+        fontFamily: "var(--font-jp), serif",
         fontSize: "1.6rem", color: "#c9a96e", lineHeight: 1,
         textShadow: "0 0 20px rgba(201,169,110,0.4)",
       }}>{char}</span>
-      <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.52rem", color: "#4a4650", letterSpacing: "0.12em", textTransform: "uppercase" }}>{label}</span>
+      <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.52rem", color: "#4a4650", letterSpacing: "0.12em", textTransform: "uppercase" }}>{label}</span>
     </div>
   );
 }
