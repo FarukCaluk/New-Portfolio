@@ -2,26 +2,15 @@
 import { useState, useRef, useEffect, FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 import { Send, MapPin, Mail, CheckCircle, AlertCircle } from "lucide-react";
-import { KatanaDivider, Pagoda, GreatWave } from "@/components/JapaneseElements";
+import { GreatWave } from "@/components/JapaneseElements";
 
 type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
-  const [vis,    setVis]    = useState(false);
-  const formRef    = useRef<HTMLFormElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => { emailjs.init("_sex6mVp7Cv3ckzer"); }, []);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } },
-      { threshold: 0.08 }
-    );
-    if (sectionRef.current) obs.observe(sectionRef.current);
-    return () => obs.disconnect();
-  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,43 +28,16 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="section" style={{ background: "var(--surface)", position: "relative", overflow: "hidden" }}>
+    <section className="section" style={{ position: "relative", overflow: "hidden", paddingTop: 0 }}>
 
-      {/* Great Wave — bottom decorative strip */}
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 0, pointerEvents: "none" }}>
         <GreatWave opacity={0.07} width={1400} />
       </div>
 
-      {/* Pagoda — far right */}
-      <div style={{ position: "absolute", right: "-10px", top: "50%", transform: "translateY(-50%)", zIndex: 0, pointerEvents: "none" }}>
-        <Pagoda opacity={0.07} height={320} />
-      </div>
-
       <div style={{ maxWidth: 1140, margin: "0 auto", position: "relative", zIndex: 2 }}>
-
-        {/* Header */}
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "2.5rem", gap: "1rem", flexWrap: "wrap" }}>
-          <div>
-            <p className="label" style={{ marginBottom: "0.75rem" }}>06 — 連絡 (Renraku)</p>
-            <h2 className="section-title">Contact</h2>
-          </div>
-          <div className="kanji-bg" style={{ fontSize: "clamp(4rem,10vw,8rem)", opacity: 0.04 }}>連</div>
-        </div>
-
-        <KatanaDivider opacity={0.18} />
-
         <div
-          className="contact-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1.7fr",
-            gap: "3rem",
-            alignItems: "start",
-            marginTop: "2.5rem",
-            opacity: vis ? 1 : 0,
-            transform: vis ? "none" : "translateY(20px)",
-            transition: "opacity 0.6s, transform 0.6s",
-          }}
+          className="contact-grid fade-up"
+          style={{ display: "grid", gridTemplateColumns: "1fr 1.7fr", gap: "3rem", alignItems: "start" }}
         >
           {/* ── Left ── */}
           <div>
@@ -84,7 +46,7 @@ export default function Contact() {
               <span style={{ color: "var(--gold)" }}>Let&apos;s build it.</span>
             </h3>
             <p style={{ fontSize: "0.875rem", color: "var(--text-2)", lineHeight: 1.85, marginBottom: "2rem" }}>
-              Open to internships, junior dev roles, freelance work,
+              Open to full-stack roles and freelance client work,
               or just a conversation about tech and martial arts.
             </p>
 
@@ -96,7 +58,7 @@ export default function Contact() {
             {/* Contact info */}
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2rem" }}>
               {[
-                { icon: MapPin, label: "Location", val: "Mostar, Bosnia & Herzegovina", href: null },
+                { icon: MapPin, label: "Location", val: "Kakanj, Bosnia & Herzegovina", href: null },
                 { icon: Mail,   label: "Email",    val: "farukcaluk12@gmail.com", href: "mailto:farukcaluk12@gmail.com" },
               ].map(({ icon: Icon, label, val, href }) => (
                 <div key={label} style={{ display: "flex", alignItems: "center", gap: "0.875rem" }}>
@@ -129,7 +91,7 @@ export default function Contact() {
               <div className="pulse-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--gold)", flexShrink: 0 }} />
               <div>
                 <p className="label" style={{ marginBottom: "0.1rem" }}>Open to work</p>
-                <p style={{ fontSize: "0.75rem", color: "var(--text-3)" }}>Internship & Junior positions · Remote or Hybrid</p>
+                <p style={{ fontSize: "0.75rem", color: "var(--text-3)" }}>Full-stack roles · freelance · remote or hybrid</p>
               </div>
             </div>
           </div>

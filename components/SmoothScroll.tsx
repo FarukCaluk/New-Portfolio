@@ -1,36 +1,23 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 1.1,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
       smoothWheel: true,
-      touchMultiplier: 1.8,
     });
-
     lenisRef.current = lenis;
 
-    // Wire up hash-link navigation
-    const handleAnchor = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest("a[href^='#']") as HTMLAnchorElement | null;
-      if (!anchor) return;
-      e.preventDefault();
-      const id = anchor.getAttribute("href")!.slice(1);
-      const el = document.getElementById(id);
-      if (el) lenis.scrollTo(el, { offset: -70, duration: 1.2 });
-    };
-    document.addEventListener("click", handleAnchor);
-
-    let raf: number;
+    let raf = 0;
     const frame = (time: number) => {
       lenis.raf(time);
       raf = requestAnimationFrame(frame);
@@ -39,10 +26,15 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     return () => {
       cancelAnimationFrame(raf);
-      document.removeEventListener("click", handleAnchor);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
+
+  // New page → start at the top; Lenis would otherwise keep its old target.
+  useEffect(() => {
+    lenisRef.current?.scrollTo(0, { immediate: true });
+  }, [pathname]);
 
   return <>{children}</>;
 }
