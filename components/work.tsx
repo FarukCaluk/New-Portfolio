@@ -15,6 +15,7 @@ export function ClientRows() {
             <span>
               <span className="client-name">{c.name}</span>
               <span className="client-meta">{[c.sector, c.location].filter(Boolean).join(" · ")}</span>
+              <span className="client-desc">{c.tagline}</span>
             </span>
             <StatusFlag status={c.status} />
             <ArrowUpRight size={18} className="client-arrow" aria-hidden="true" />

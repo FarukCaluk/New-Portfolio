@@ -6,6 +6,7 @@ export type Link = { label: string; href: string; kind: "live" | "preview" | "co
 export type Client = {
   name: string;
   sector: string;
+  tagline: string;
   location?: string;
   year: string;
   status: "live" | "soon";
@@ -18,6 +19,7 @@ export type Client = {
 export const CLIENTS: Client[] = [
   {
     name: "Sky Parking & Fly",
+    tagline: "Trilingual site with online reservations, a live price calculator and email confirmations for every booking.",
     sector: "Airport parking",
     location: "Sarajevo",
     year: "2026",
@@ -37,6 +39,7 @@ export const CLIENTS: Client[] = [
   },
   {
     name: "Mega-Em",
+    tagline: "Company site redesign with a 3D paint configurator, product catalogues and a page for every store.",
     sector: "Paints & coatings distributor",
     location: "Visoko",
     year: "2026",
@@ -56,6 +59,7 @@ export const CLIENTS: Client[] = [
   },
   {
     name: "Dr. Karić Dental Practice",
+    tagline: "Practice site with a 3D tooth, live opening hours, patient reviews and appointment requests.",
     sector: "Dental practice",
     location: "Kakanj",
     year: "2026",
@@ -75,6 +79,7 @@ export const CLIENTS: Client[] = [
   },
   {
     name: "NextFrame Digital",
+    tagline: "Studio site with a work gallery, services for weddings, video and drone, and an online booking form.",
     sector: "Photo & video production",
     year: "2026",
     status: "soon",
