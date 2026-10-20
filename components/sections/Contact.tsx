@@ -1,23 +1,30 @@
 "use client";
-import { useState, useRef, useEffect, FormEvent } from "react";
-import emailjs from "@emailjs/browser";
+import { useState, useRef, FormEvent } from "react";
 import { Send, MapPin, Mail, CheckCircle, AlertCircle } from "lucide-react";
 import { GreatWave } from "@/components/JapaneseElements";
 
 type Status = "idle" | "sending" | "success" | "error";
 
+// FormSubmit mails every submission to this address as a table. The first submission
+// sends an activation link to the inbox; nothing arrives until it is clicked.
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/farukcaluk12@gmail.com";
+
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
   const formRef = useRef<HTMLFormElement>(null);
-
-  useEffect(() => { emailjs.init("_sex6mVp7Cv3ckzer"); }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formRef.current) return;
     setStatus("sending");
     try {
-      await emailjs.sendForm("service_ze0p0br", "template_oma0xz8", formRef.current);
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(formRef.current),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) !== "true") throw new Error(data.message);
       setStatus("success");
       formRef.current.reset();
       setTimeout(() => setStatus("idle"), 5000);
@@ -99,6 +106,10 @@ export default function Contact() {
           {/* ── Right: form ── */}
           <div className="card" style={{ padding: "2.25rem", border: "1px solid var(--border-soft)" }}>
             <form ref={formRef} onSubmit={handleSubmit}>
+              <input type="hidden" name="_subject" value="New message from your portfolio" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
               <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.875rem", marginBottom: "0.875rem" }}>
                 <div>
                   <label className="label" style={{ display: "block", marginBottom: "0.4rem", color: "var(--text-3)", fontSize: "0.56rem" }}>Name</label>
