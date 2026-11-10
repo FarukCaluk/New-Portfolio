@@ -1,5 +1,21 @@
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { Client, Link as L } from "@/lib/data";
+
+/** Screenshot inside a minimal browser window; the whole frame links to the site. */
+export function BrowserFrame({ src, alt, href, sizes }: { src: string; alt: string; href: string; sizes: string }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="browser" aria-label={`Open ${alt}`}>
+      <span className="browser-bar" aria-hidden="true">
+        <span className="browser-dots"><i /><i /><i /></span>
+        <span className="browser-url">{new URL(href).host}</span>
+      </span>
+      <span className="browser-view">
+        <Image src={src} alt={alt} fill sizes={sizes} className="browser-img" />
+      </span>
+    </a>
+  );
+}
 
 export function GithubIcon({ size = 13 }: { size?: number }) {
   return (

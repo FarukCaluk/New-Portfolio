@@ -7,6 +7,8 @@ export type Client = {
   name: string;
   sector: string;
   tagline: string;
+  /** Homepage screenshot in /public/shots (1440×900). */
+  shot: string;
   location?: string;
   year: string;
   status: "live" | "soon";
@@ -19,6 +21,7 @@ export type Client = {
 export const CLIENTS: Client[] = [
   {
     name: "Sky Parking & Fly",
+    shot: "/shots/sky-parking.webp",
     tagline: "Trilingual site with online reservations, a live price calculator and email confirmations for every booking.",
     sector: "Airport parking",
     location: "Sarajevo",
@@ -39,6 +42,7 @@ export const CLIENTS: Client[] = [
   },
   {
     name: "Mega-Em",
+    shot: "/shots/mega-em.webp",
     tagline: "Company site redesign with a 3D paint configurator, product catalogues and a page for every store.",
     sector: "Paints & coatings distributor",
     location: "Visoko",
@@ -59,6 +63,7 @@ export const CLIENTS: Client[] = [
   },
   {
     name: "Dr. Karić Dental Practice",
+    shot: "/shots/dr-karic.webp",
     tagline: "Practice site with a 3D tooth, live opening hours, patient reviews and appointment requests.",
     sector: "Dental practice",
     location: "Kakanj",
@@ -79,6 +84,7 @@ export const CLIENTS: Client[] = [
   },
   {
     name: "NextFrame Digital",
+    shot: "/shots/nextframe.webp",
     tagline: "Studio site with a work gallery, services for weddings, video and drone, and an online booking form.",
     sector: "Photo & video production",
     year: "2026",
@@ -102,7 +108,7 @@ export type Project = {
   title: string;
   sub: string;
   year: string;
-  wide?: boolean;
+  shot?: string;
   desc: string;
   bullets?: string[];
   tags: string[];
@@ -114,7 +120,6 @@ export const PROJECTS: Project[] = [
     title: "eSIM Management Platform",
     sub: "Internship at eSIMFly",
     year: "2025",
-    wide: true,
     desc: "An admin platform for managing eSIMs, users and subscription plans, built during my eSIMFly internship.",
     bullets: [
       "Backend: NestJS + MongoDB with JWT auth, role-based access control, DTO validation, i18n and Swagger/OpenAPI docs",
@@ -128,6 +133,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Kolektiv Bosna Rudar",
+    shot: "/shots/bosna-rudar.webp",
     sub: "Club website",
     year: "2025",
     desc: "Website for the Bosna Rudar Taekwondo club: news, training info, achievements and contact details, managed through a headless CMS. Serves 500+ monthly users.",
@@ -139,6 +145,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Kakanj Eko Monitor",
+    shot: "/shots/kakanj-eko.webp",
     sub: "IoT · Web",
     year: "2025",
     desc: "An ESP32 with temperature, humidity and gas sensors streams readings to Firebase, shown live in a Next.js dashboard with sparkline trends and safe / warn / danger alerts.",
@@ -158,6 +165,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Kaizen Way",
+    shot: "/shots/kaizen-way.webp",
     sub: "Interactive story",
     year: "2026",
     desc: "A storytelling app on continuous improvement: four phases from seed to canopy, hold-to-water interactions and falling sakura petals in an ink-wash style.",
